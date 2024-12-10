@@ -13,11 +13,18 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
-            $table->rememberToken();
+            // $table->string('name');
+            // $table->string('email')->unique();
+            // $table->timestamp('email_verified_at')->nullable();
+            // $table->string('password');
+            // $table->rememberToken();
+            $table->string('name'); // UserName
+            $table->string('email')->unique(); // UserEmail
+            $table->string('phone'); // UserPhone
+            $table->string('password'); // UserPassword
+            $table->rememberToken(); // UserRememberToken
+            $table->timestamp('registration_date')->useCurrent(); // Ngày đăng ký
+            $table->foreignId('role_id')->constrained('roles'); // Khóa ngoại từ bảng roles
             $table->timestamps();
         });
     }

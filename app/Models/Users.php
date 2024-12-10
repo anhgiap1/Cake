@@ -8,7 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
-class User extends Authenticatable
+class Users extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
@@ -42,4 +42,23 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+    public function role()
+    {
+        return $this->belongsTo(roles::class);
+    }
+
+    public function orders()
+    {
+        return $this->hasMany(orders::class);
+    }
+
+    public function comments()
+    {
+        return $this->hasMany(comments::class);
+    }
+
+    public function carts()
+    {
+        return $this->hasMany(Cart::class);
+    }
 }
