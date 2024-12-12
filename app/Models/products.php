@@ -17,6 +17,10 @@ class products extends Model
     {
         return $this->hasMany(variants::class);
     }
+    public function orders()
+    {
+        return $this->belongsToMany(Orders::class, 'order_items', 'product_id', 'order_id');
+    }
 
     public function order_Items()
     {
