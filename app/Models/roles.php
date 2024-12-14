@@ -10,6 +10,6 @@ class roles extends Model
     use HasFactory;
     public function users()
     {
-        return $this->hasMany(Users::class);
+        return $this->hasMany(User::class);
     }
 }
