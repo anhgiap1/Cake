@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\backend;
 
 use App\Models\User;
+use App\Models\Users;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
@@ -14,7 +15,7 @@ class UserController extends Controller
     }
     public function index(){
 
-        $userDb = User::paginate(5);
+        $userDb = Users::paginate(5);
         $config = $this->config();
         $template = 'dashboard.user.index';
         return view('dashboard.layout',compact('template','config','userDb'));
@@ -47,11 +48,11 @@ class UserController extends Controller
         //     'password' => Hash::make($request->password), // mã hóa mật khẩu
         // ]);
         $data = $request->all();
-        User::create($data);
+        Users::create($data);
         return redirect()->route('user.index')->with('success','Thêm mới thành công');
     }
     public function destroy($id){
-        $user = User::find($id);
+        $user = Users::find($id);
         if($user){
             $user->delete();
             return redirect()->route('user.index')->with('success','Xóa thành công');

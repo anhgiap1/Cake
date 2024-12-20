@@ -11,11 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('products', function (Blueprint $table) {
+        Schema::create('Products', function (Blueprint $table) {
             $table->id();
             $table->string('name');
             $table->string('image');
-            $table->foreignId('category_id')->constrained('categories'); // CategoryID (Khóa ngoại tham chiếu đến bảng categories)
+            $table->foreignId('categories_id')->constrained('categories')->onDelete('cascade');
+            $table->softDeletes();
+            // CategoryID (Khóa ngoại tham chiếu đến bảng categories)
             $table->timestamps();
         });
     }

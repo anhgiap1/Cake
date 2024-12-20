@@ -10,7 +10,7 @@ class orders extends Model
     use HasFactory;
     public function users()
     {
-        return $this->belongsTo(User::class, 'user_id');
+        return $this->belongsTo(Users::class, 'user_id');
     }
     public function products()
     {

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\login;
 
 use App\Models\User;
+use App\Models\Users;
 use Illuminate\Http\Request;
 use App\Http\Requests\AuthRequest;
 use App\Http\Controllers\Controller;
@@ -46,7 +47,7 @@ class AuthController extends Controller
 
         try {
             // Tạo người dùng
-            User::create($data);
+            Users::create($data);
             return redirect()->route('admin.admin')->with('success', 'Tạo tài khoản thành công');
         } catch (\Exception $e) {
             // Nếu có lỗi xảy ra
