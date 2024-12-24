@@ -10,6 +10,6 @@ class variants extends Model
     use HasFactory;
     public function products()
     {
-        return $this->belongsTo(products::class);
+        return $this->belongsTo(products::class, ' variant_id');
     }
 }

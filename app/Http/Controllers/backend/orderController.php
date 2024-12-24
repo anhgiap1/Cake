@@ -6,6 +6,7 @@ use App\Models\orders;
 use App\Models\products;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\order_items;
 
 class orderController extends Controller
 {
@@ -48,9 +49,11 @@ class orderController extends Controller
     }
     public function show($id)
     {
-        $order = Orders::with('products')->find($id);
+        // Truy vấn dữ liệu từ bảng order_items với các mối quan hệ liên quan
+        $order = order_items::with('users','orders', 'products', 'variants')->findOrFail($id);
+        // Truyền dữ liệu vào view
         $template = 'dashboard.order.component.show';
-        return view('dashboard.orders.component.show',compact('template', 'order'));
+            dd($order->users);
+        return view('dashboard.orders.component.show', compact('order','template'));
     }
-    
 }

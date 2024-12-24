@@ -1,8 +1,3 @@
-
-@extends('layout.app')
-
-
-@section('content')
 <h5 class="text-uppercase text-center modal-title p-3">Đơn Hàng</h5>
 <table border="1" class="table">
     <thead>
@@ -16,19 +11,17 @@
         </tr>
     </thead>
     <tbody>
-        @foreach ($order->products as $item)
+      
         <tr>
-            <td>{{$item->name}}</td>
-            <td>
-                <img width="100px" src="{{asset('storage/'.$item->image)}}" alt="">
-                
-            </td>
-            <td>{{$item->size}}</td>
-            <td>{{$item->quantily}}</td>
-            <td>{{$item->amount}}</td>
-            <td>{{number_format($item->amount*$item->quantily, 2)}}</td>
-        </tr>
-        @endforeach
+          <td>{{$order->products->name}}</td>
+          <td>{{$order->products->image}}</td>
+          <td>{{$order->variants->size}}</td>
+          <td>{{$order->quantity }}</td>
+          <td>{{$order->variants->price}}</td>
+          <td>{{number_format($order->quantity * $order->variants->price )}}</td>
+          </tr>
+     
+
     </tbody>
 </table>
 <style>
@@ -37,14 +30,14 @@
         padding-bottom: 15px;
     }
 </style>
-<div class="container">
+ <div class="container">
     <h6 class="text-uppercase text-center modal-title p-3" id="exampleModalLabel">Thông tin khách hàng</h6>
     <table class="table align-items-center justify-content-between mb-0">
 
       <tr>
         <th class="text-secondary text-xxs font-weight-bolder opacity-7">Họ và tên</th>
         <td class="p-2">
-          <p class="text-sm font-weight-bold mb-0 text-end">{{$order->fullname}}</p>
+          <p class="text-sm font-weight-bold mb-0 text-end">{{$order->users->name}}</p>
         </td>
       </tr>
       <tr>
@@ -56,7 +49,7 @@
       <tr>
         <th class="text-secondary text-xxs font-weight-bolder opacity-7">Số điện thoại</th>
         <td class="p-2">
-          <p class="text-sm font-weight-bold mb-0 text-end">{{ $order->telephone }}</p>
+          <p class="text-sm font-weight-bold mb-0 text-end">{{ $order->phonenumber }}</p>
         </td>
       </tr>
       <tr>
@@ -68,15 +61,14 @@
       <tr>
         <th class="text-secondary text-xxs font-weight-bolder opacity-7">Trạng thái</th>
         <td class="p-2">
-          <p class="text-sm font-weight-bold mb-0 text-end">{{ $order->status }}</p>
+          <p class="text-sm font-weight-bold mb-0 text-end">{{ $order->orders->status }}</p>
         </td>
       </tr>
       <tr>
         <th class="text-secondary text-xxs font-weight-bolder opacity-7">Thời gian</th>
         <td class="p-2">
-          <p class="text-sm font-weight-bold mb-0 text-end">{{ $order->order_time }}</p>
+          <p class="text-sm font-weight-bold mb-0 text-end">{{ $order->orders->order_date }}</p>
         </td>
       </tr>
     </table>
   </div>
-@endsection

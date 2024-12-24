@@ -19,12 +19,15 @@ class orders extends Model
 
     public function order_Items()
     {
-        return $this->hasMany(order_items::class);
+        return $this->hasMany(order_items::class, 'order_id');
     }
 
     public function promotions()
     {
         return $this->belongsToMany(promotions::class);
+    }
+    public function variants(){
+        return $this->hasMany(variants::class);
     }
 }
 

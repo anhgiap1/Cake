@@ -10,16 +10,19 @@ class order_items extends Model
     use HasFactory;
     public function orders()
     {
-        return $this->belongsTo(Orders::class);
+        return $this->belongsTo(Orders::class, 'order_id');
     }
 
     public function products()
     {
-        return $this->belongsTo(products::class);
+        return $this->belongsTo(products::class , 'product_id');
     }
 
     public function variants()
     {
-        return $this->belongsTo(variants::class);
+        return $this->belongsTo(variants::class, 'variant_id');
+    }
+    public function users(){
+        return $this->hasMany(User::class);
     }
 }
