@@ -13,9 +13,10 @@ return new class extends Migration
     {
         Schema::create('variants', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('product_id')->constrained('products'); // ProductID khóa ngoại
+            $table->foreignId('product_id')->constrained('products')->onDelete('cascade'); // ProductID khóa ngoại
             $table->string('size'); // Kích cỡ smaill,medium, Large
             $table->decimal('price',10, 2); // giá biến thể
+            $table->softDeletes();
             $table->timestamps();
         });
     }

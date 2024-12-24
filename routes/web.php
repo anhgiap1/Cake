@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\adm\categoriesController;
 use App\Http\Controllers\adm\ProductController;
+use App\Http\Controllers\adm\VariantController;
 use App\Models\categories;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\login\AuthController;
@@ -53,6 +54,24 @@ Route::group([
     Route::put('updatepro/{id}',[ProductController::class,'updateputpro'])->name('updateputpro');
     //delete
     Route::delete('deletepro/{id}',[ProductController::class,'deletepro'])->name('deletepro');
+});
+
+//bienthe
+
+Route::group([
+    'prefix'=>'vars',
+    'as'=>'vars.'
+],function(){
+    Route::get('/',[VariantController::class,'listvar'])->name('listvar');
+    //add
+    Route::get('addvar',[VariantController::class,'addvar'])->name('addvar');
+    Route::post('addvar',[VariantController::class,'addpostvar'])->name('addpostvar');
+    //update
+    Route::get('updatevar/{id}',[VariantController::class,'updatevar'])->name('updatevar');
+    Route::put('updatevar/{id}',[VariantController::class,'updateputvar'])->name('updateputvar');
+    //delete
+    Route::delete('deletevar/{id}',[VariantController::class,'deletevar'])->name('deletevar');
+    
 });
 Route::get('dashboard/dashboard', [DashboardController::class, 'index'])->name('dashboard.index')->middleware('admin');
 //
