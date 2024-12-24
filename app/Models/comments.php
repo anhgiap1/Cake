@@ -10,7 +10,7 @@ class comments extends Model
     use HasFactory;
     public function users()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(Users::class);
     }
 
     public function products()
