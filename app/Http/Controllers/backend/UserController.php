@@ -50,18 +50,18 @@ class UserController extends Controller
         return view('dashboard.layout',compact('template','config'));
     }
     public function store(Request $request){
-        // $request->validate([
-        //     'name' =>'required|',
-        //     'email' =>'required|email|unique:users,email',
-        //     'password' => 'required|min:8|confirmed',
-        // ]);
-        // User::create([
-        //     'name' => $request->name,
-        //     'email' => $request->email,
-        //     'password' => Hash::make($request->password), // mã hóa mật khẩu
-        // ]);
-        $data = $request->all();
-        User::create($data);
+        $request->validate([
+            'name' =>'required|',
+            'email' =>'required|email|unique:users,email',
+            'password' => 'required|min:8|confirmed',
+        ]);
+        User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password), // mã hóa mật khẩu
+        ]);
+        // $data = $request->all();
+        // User::create($data);
         return redirect()->route('user.index')->with('success','Thêm mới thành công');
     }
     public function destroy($id){
