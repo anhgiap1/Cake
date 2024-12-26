@@ -77,7 +77,7 @@
                 
             </div>
             <div class="ibox-content">
-                {{-- @include('dashboard.user.component.filter') --}}
+                @include('dashboard.orders.component.filter')
                 {{-- {{-- @include('dashboard.user.component.table') --}}
                 @include('dashboard.orders.component.slidebar')
                 

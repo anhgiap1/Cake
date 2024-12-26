@@ -14,4 +14,7 @@ class categories extends Model
         'name'
     ];
     protected $dates = ['deleted_at'];
+    public function products(){
+        return $this->hasMany(products::class);
+    }
 }

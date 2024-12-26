@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\adm;
+namespace App\Http\Controllers\backend;
 
 use App\Http\Controllers\Controller;
 use App\Models\categories;
@@ -10,17 +10,18 @@ use Storage;
 
 class ProductController extends Controller
 {
-    public function listpro(){
-        $listpro = products::all();
-        return view('admin.sanpham.index')->with([
-            'listpro'=> $listpro
-        ]);
+    public function index(){
+        $template = 'admin.sanpham.index';
+        $listpro = products::with('category')->get();
+        // dd($listpro);
+        return view('dashboard.layout',compact('listpro','template'));
+
     }
-    public function addpro(){
+    public function create(){
         $categories = categories::all();
-        return view('admin.sanpham.create',compact('categories'));
+        return view('admin.sanpham.component.create',compact('categories'));
     }
-    public function addpostpro(Request $request){
+    public function store(Request $request){
         $path = null;
         if($request->hasFile('image')){
             $image =$request->file('image');
@@ -34,14 +35,14 @@ class ProductController extends Controller
             'categories_id'=> $request->categories_id,
         ];
         products::create($data);
-        return redirect()->route('pros.listpro');
+        return redirect()->route('product.index');
     }
-    public function updatepro($id){
+    public function edit($id){
         $product= products::find($id);
         $categories= categories::all();
-        return view('admin.sanpham.edit',compact('product','categories'));
+        return view('admin.sanpham.component.edit',compact('product','categories'));
     }
-    public function updateputpro($id,Request $request){
+    public function update($id,Request $request){
         $product= products::find($id);
         $path = $product->image;
         if($request->hasFile('image')){
@@ -58,7 +59,7 @@ class ProductController extends Controller
         $product->update($data);
         return redirect()->route('pros.listpro');
     }
-    public function deletepro($id){
+    public function destroy($id){
         $product= products::find($id);
         $product->delete();
         return redirect()->route('pros.listpro');

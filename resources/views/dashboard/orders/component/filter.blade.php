@@ -17,21 +17,13 @@
                     <option value="0" selected="selected">Chọn Nhóm Thành Viên</option>
                     <option value="1">Quản Trị Viên</option>
                 </select>
-                <div class="uk-search uk-flex uk-flex-middle mr10">                    
-                    <form class="form-inline" action="{{ route('user.index') }}" method="GET">
-                        <div class="input-group">
-                            <input 
-                                type="text" 
-                                name="search_id" 
-                                value="{{ request()->search_id }}" 
-                                placeholder="Nhập từ khóa mà bạn muốn tìm kiếm ..." 
-                                class="form-control"
-                            >
-                            <span class="input-group-btn">
-                                <button type="submit" class="btn btn-primary mb0 btn-sm">Tìm kiếm</button>
-                            </span>
-                        </div>
-                    </form>
+                <div class="uk-search uk-flex uk-flex-middle mr10">
+                    <div class="input-group">
+                        <input type="text" name="keyword" value="" placeholder="Nhập từ khóa mà bạn muốn tìm kiếm ..." class="form-control">
+                        <span class="input-group-btn">
+                            <button type="submit" name="search" value="search" class="btn btn-primary mb0 btn-sm">Tìm kiếm</button>
+                        </span>
+                    </div>
                 </div>
                 <a href="{{route('user.create')}}" class="btn btn-danger"><i class="fa fa-plus"></i>Thêm mới thành viên</a>
             </div>

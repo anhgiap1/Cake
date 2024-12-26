@@ -13,7 +13,7 @@ class variants extends Model
     protected $fillable = ['product_id','size','price'];
     public function products()
     {
-        return $this->belongsTo(products::class, ' variant_id');
+        return $this->belongsTo(products::class);
     }
     protected $dates = ['deleted_at'];
 }

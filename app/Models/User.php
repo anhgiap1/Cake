@@ -8,7 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
-class Users extends Authenticatable
+class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
@@ -52,7 +52,7 @@ class Users extends Authenticatable
 
     public function orders()
     {
-        return $this->hasMany(orders::class);
+        return $this->hasMany(orders::class,);
     }
 
     public function comments()

@@ -6,13 +6,14 @@
     <title>Document</title>
 </head>
 <body>
-    <form action="{{route('cates.addpostcate')}}" method="post" enctype="multipart/form-data">
+    <form action="{{route('category.update', $cate->id)}}" method="post" enctype="multipart/form-data">
     @csrf
+    @method('PUT')
     <div>
         <label for="">Name</label>
-        <input type="text" name="name">   
+        <input type="text" name="name" value="{{$cate->name}}">   
     </div>
-    <button><a href="">Thêm mới</a></button>
+    <button type="submit">edit</button>
     </form>
 </body>
 </html>

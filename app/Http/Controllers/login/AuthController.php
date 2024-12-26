@@ -47,7 +47,7 @@ class AuthController extends Controller
 
         try {
             // Tạo người dùng
-            Users::create($data);
+            User::create($data);
             return redirect()->route('admin.admin')->with('success', 'Tạo tài khoản thành công');
         } catch (\Exception $e) {
             // Nếu có lỗi xảy ra

@@ -10,7 +10,7 @@ class orders extends Model
     use HasFactory;
     public function users()
     {
-        return $this->belongsTo(Users::class, 'user_id');
+        return $this->belongsTo(User::class, 'user_id', 'id');
     }
     public function products()
     {
@@ -19,7 +19,7 @@ class orders extends Model
 
     public function order_Items()
     {
-        return $this->hasMany(order_items::class, 'order_id');
+        return $this->hasMany(order_items::class, 'order_id', 'id');
     }
 
     public function promotions()

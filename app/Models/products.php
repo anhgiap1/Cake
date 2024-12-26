@@ -15,9 +15,9 @@ class products extends Model
     ];
     protected $dates = ['deleted_at'];
 
-    public function categories()
+    public function category()
     {
-        return $this->belongsTo(categories::class);
+        return $this->belongsTo(Categories::class, 'category_id', 'id');
     }
 
     public function variants()

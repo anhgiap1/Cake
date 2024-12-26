@@ -49,11 +49,11 @@ class orderController extends Controller
     }
     public function show($id)
     {
-        // Truy vấn dữ liệu từ bảng order_items với các mối quan hệ liên quan
-        $order = order_items::with('users','orders', 'products', 'variants')->findOrFail($id);
-        // Truyền dữ liệu vào view
-        $template = 'dashboard.order.component.show';
-            dd($order->users);
+        $order = order_items::with(['orders.users', 'products', 'variants'])->findOrFail($id);
+    
+        // Debug dữ liệu
+        // dd($order->orders->users);
+        $template = 'dashboard.orders.component.show';
         return view('dashboard.orders.component.show', compact('order','template'));
     }
 }

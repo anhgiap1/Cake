@@ -13,13 +13,22 @@ class UserController extends Controller
     public function __construct(){
 
     }
-    public function index(){
+    public function index(Request $request)
+{
+    $query = User::query(); // Khởi tạo query từ model User
 
-        $userDb = Users::paginate(5);
-        $config = $this->config();
-        $template = 'dashboard.user.index';
-        return view('dashboard.layout',compact('template','config','userDb'));
+    // Kiểm tra nếu request có từ khóa tìm kiếm
+    if ($request->has('search_id') && !empty($request->search_id)) {
+        $query->where('name', 'like', '%' . $request->search_id . '%');
     }
+
+    $userDb = $query->paginate(5); // Phân trang kết quả, mỗi trang 5 bản ghi
+
+    $config = $this->config(); // Tải config CSS/JS
+    $template = 'dashboard.user.index'; // Xác định template
+
+    return view('dashboard.layout', compact('template', 'config', 'userDb'));
+}
 
     private function config(){
         return  [
@@ -30,6 +39,10 @@ class UserController extends Controller
                 'backend/css/plugins/switchery/switchery.css'
             ]
             ];
+    }
+    public function searchOrders(Request $request)
+    {
+        return redirect()->route('user.index', ['search_id' => $request->search_id]);
     }
     public function create(){
         $config = $this->config();
@@ -48,11 +61,11 @@ class UserController extends Controller
         //     'password' => Hash::make($request->password), // mã hóa mật khẩu
         // ]);
         $data = $request->all();
-        Users::create($data);
+        User::create($data);
         return redirect()->route('user.index')->with('success','Thêm mới thành công');
     }
     public function destroy($id){
-        $user = Users::find($id);
+        $user = User::find($id);
         if($user){
             $user->delete();
             return redirect()->route('user.index')->with('success','Xóa thành công');

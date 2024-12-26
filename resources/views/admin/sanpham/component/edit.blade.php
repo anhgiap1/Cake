@@ -6,7 +6,7 @@
     <title>Thêm mới</title>
 </head>
 <body>
-    <form action="{{route('pros.updateputpro', $product->id)}}" method="post" enctype="multipart/form-data">
+    <form action="{{route('product.update', $product->id)}}" method="post" enctype="multipart/form-data">
         @csrf
         @method('PUT')
     <div class="container">

@@ -6,7 +6,7 @@
     <title>Thêm mới</title>
 </head>
 <body>
-    <form action="{{route('pros.addpostpro')}}" method="post" enctype="multipart/form-data">
+    <form action="{{route('product.store')}}" method="post" enctype="multipart/form-data">
         @csrf
     <div class="container">
         <label for="">Name</label>

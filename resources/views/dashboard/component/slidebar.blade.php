@@ -26,9 +26,11 @@
                     <li><a href="{{route('dashboard.index')}}">Quản Lý Nhóm Thành Viên</a></li>
                     <li><a href="{{route('user.index')}}">Quản Lý Thành Viên</a></li>
                     <li><a href="{{route('order.index')}}">Quản Lý Đơn Hàng</a></li>
-                    <li><a href="">Quản Lý Sản Phẩm</a></li>
-                    <li><a href="">Quản lý mã giảm giá</a></li>
-                    <li><a href="">Quản lý bình luận</a></li>
+                    <li><a href="{{route('category.index')}}">Quản Lý Danh Mục</a></li>
+                    <li><a href="{{route('variant.index')}}">Quản Lý Biến Thể</a></li>
+                    <li><a href="{{route('product.index')}}">Quản Lý Sản Phẩm</a></li>
+                    <li><a href="#">Quản lý mã giảm giá</a></li>
+                    <li><a href="#">Quản lý bình luận</a></li>
                     
                     
                     
